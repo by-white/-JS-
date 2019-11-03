@@ -79,9 +79,6 @@
         let selAll = document.getElementById('selectAll');
         let color = '';
         let arr = [];
-        for(var i = 0; i < checks.length; i++){
-            arr[i] = checks[i];
-        }
         for (var i = 0; i < lists.length; i++) {
             let onoff = true;
             if (i % 2 === 0) {
@@ -99,12 +96,24 @@
             lists[i].firstElementChild.onclick = function(){
                 if (onoff === true) {
                     this.innerHTML = '√';
-                    color = this.parentNode.className;
                     this.parentNode.style.backgroundColor = 'red';
                 } else {
+                    this.innerHTML = '';
+                    this.parentNode.style.backgroundColor = '';
+                    this.parentNode.className = color;  //color的值为onmouseover中color的值
                 }
                 onoff = !onoff;
-            }  
+                
+            }
+            selAll.onclick = function(){
+                if (onoff === true) {
+                    this.innerHTML = '√'+'<span>全选</span>'; 
+                } else {
+                    this.innerHTML = ''+'<span>全选</span>';
+                }
+                onoff = !onoff;
+                
+            } 
         }
        
 
